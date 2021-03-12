@@ -26,6 +26,11 @@ func GenCredential() *[]Credential {
 	return &cs
 }
 
+func EmptyCredential() *[]Credential {
+	cs := []Credential{}
+	return &cs
+}
+
 func main() {
 
 	cs := GenCredential()
@@ -41,4 +46,10 @@ func main() {
 
 	fmt.Println(parameter)
 
+	rxp := regexp.MustCompile("{{2}[a-zA-Z0-9]*}{2}")
+	isMatch := rxp.Match([]byte(parameter))
+	fmt.Printf("isMatch: %v", isMatch)
+
+	emptyCs := EmptyCredential()
+	fmt.Printf("credentials: %d\n", len(*emptyCs))
 }
